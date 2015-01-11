@@ -1,4 +1,5 @@
 <?php
+    // Essse script não nenhuma função no projeto, serve apenas para fazer testes caso exista algum erro nos scripts do projeto
     require 'conexao.php';
 	mysqli_query($conexao, "SET NAMES 'UTF8';");
 	
