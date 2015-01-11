@@ -13,14 +13,13 @@
 	@$salario = $_POST['salario'];
 	@$email = $_POST['email'];
 	@$senha = $_POST['senha'];
+	@$nivel = $_POST['nivel'];
 	
 	if (!empty($_POST)){
-	$sql = "INSERT INTO usuario (nome, pai, mae, cpf, rg, nascimento, naturalidade, funcao, escolaridade, salario, email, senha) 
-	VALUES ('$nome', '$pai', '$mae', '$cpf', '$rg', '$nascimento', '$naturalidade', '$funcao', '$escolaridade', '$salario', '$email', '$senha')";
+	$sql = "INSERT INTO usuario (nome, pai, mae, cpf, rg, nascimento, naturalidade, funcao, escolaridade, salario, email, senha, nivel) 
+	VALUES ('$nome', '$pai', '$mae', '$cpf', '$rg', '$nascimento', '$naturalidade', '$funcao', '$escolaridade', '$salario', '$email', '$senha', '$nivel')";
 	mysqli_query($conexao, $sql) or die('Error: '.mysqli_error($conexao));
 	header('location: listar_funcionarios.php');
 	exit;
-	}// else {
-		//echo "Error";
-	//}
+	}
 ?>

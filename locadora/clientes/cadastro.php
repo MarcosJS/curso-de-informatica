@@ -17,14 +17,14 @@
 	
 	//parte da estrutura de decisão usada para tratar erros na validação dos dados caso ela ocorra	
 	} elseif (!empty($_GET['erro_cad']) && $_GET['erro_cad'] == "cadincompleto") {
-		$msg= '<h4 align="center"><font color="#FA8F8F" face="arial">Por favor preencha todos os dados!</font></h4>';
+		$msg_cad= '<h4 align="center"><font color="#FA8F8F" face="arial">Por favor preencha todos os dados!</font></h4>';
 	} elseif (!empty($_GET['erro_cad']) && $_GET['erro_cad'] == "emailinvalido") {
-		$msg= '<font color="#FA8F8F" face="arial"><h4 align="center">Formato de e-mail invalido!</h4>
+		$msg_cad= '<font color="#FA8F8F" face="arial"><h4 align="center">Formato de e-mail invalido!</h4>
 		       <p>Seu e-mail deve seguir modelos como estes:<br/> seuemail@servidor.com,<br/> seuemail@servidor.com.br, ...</font></p><br/>';
 	} elseif (!empty($_GET['erro_cad']) && $_GET['erro_cad'] == "senhaincompleta") {
-		$msg= '<h4 align="center"><font color="#FA8F8F" face="arial">Sua senha deve ter no minimo 8(oito) digitos!</font></h4>';
+		$msg_cad= '<h4 align="center"><font color="#FA8F8F" face="arial">Sua senha deve ter no minimo 8(oito) digitos!</font></h4>';
 	} elseif (!empty($_GET['erro_cad']) && $_GET['erro_cad'] == "emailutilizado") {
-		$msg= '<h4 align="center"><font color="#FA8F8F" face="arial">Já existe um usuário cadastrado com este e-mail!</font></h4>';
+		$msg_cad= '<h4 align="center"><font color="#FA8F8F" face="arial">Já existe um usuário cadastrado com este e-mail!</font></h4>';
 	}	
     
 	//inclusão do cabeçalho
@@ -32,7 +32,7 @@
 ?>
 		<!-- corpo da pagina contendo um formulário HTML -->
 		<h3 align="center"><font face="verdana" color="#A0A0A0">ÁREA DE CADASTRO</font></h3>
-		<?= @$msg;?>
+		<?= @$msg_cad;?>
 		<form action="<?= $destino; ?>" method="post">
 			<?= @$oculto; ?>
 			<fieldset>

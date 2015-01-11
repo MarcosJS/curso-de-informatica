@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	//conectando ao banco de dados através do 'require'
     require '../conexao.php';
 	mysqli_query($conexao, "SET NAMES 'UTF8';");
@@ -34,6 +35,7 @@
 	  else {
 		$sql = "INSERT INTO cliente (nome, sobrenome, telefone, endereco, email, senha, status, nivel) VALUES ('$nome', '$sobrenome', '$telefone', '$endereco', '$email', '$senha', '$status', '$nivel')";
 		mysqli_query($conexao, $sql) or die('Error: '.mysqli_error($conexao));
+		$_SESSION['cadastrado'] = "realizado";
 		header('location: ../index.php');
 		exit;
 	}

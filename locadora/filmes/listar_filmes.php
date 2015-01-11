@@ -1,4 +1,9 @@
 <?php
+	session_start();
+	if (!isset($_SESSION['nivel']) || $_SESSION['nivel'] < 2) {
+		echo "<br/><br/><br/><br/><p align='center'><b>Acesso negado!</b></p><p align='center'><a href='http://localhost/teste/locadora/index.php'><b>HOME PAGE</b></a></p>";
+		//header('location: http://localhost/teste/locadora/index.php');
+	} else {
 	require '../conexao.php';
 	mysqli_query($conexao, "SET NAMES 'UTF8';");//configurando codificação
 	$listagem = mysqli_query($conexao, "SELECT * FROM filme");
@@ -65,4 +70,5 @@
 
 <?php
 	include '../template_rodape.php';
+	}
 ?>

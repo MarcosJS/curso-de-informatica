@@ -1,32 +1,38 @@
 <?php
+	//session_start();
 	require 'conexao.php';
 	mysqli_query($conexao, "SET NAMES 'UTF8';");	
-	$msg_erro = '';
-	if (!empty($_GET['msg'])) {
-		if ($_GET['msg'] == "passinvalid") {
-			$msg_erro = '<table align="right"><tr><td><font size="2"color="#FA8F8F">Senha invalida!</font></td></tr></table>';
-		} elseif ($_GET['msg'] == "usernoexist") {
-			$msg_erro = '<table align="right"><tr><td><font size="2"color="#FA8F8F">Usuario não existe!</font></td></tr></table>';
-		}
+	$msg = '';
+	if (!empty($_SESSION['msg'])) {
+		if ($_SESSION['msg'] == "passinvalid") {
+			$msg = '<table align="right"><tr><td><font size="2"color="#FA8F8F">Senha invalida!</font></td></tr></table>';
+		} elseif ($_SESSION['msg'] == "usernoexist") {
+			$msg = '<table align="right"><tr><td><font size="2"color="#FA8F8F">Usuario não existe!</font></td></tr></table>';
+		} 
+	} elseif (!empty($_SESSION['cadastrado']) && $_SESSION['cadastrado'] == "realizado") {
+		$msg = '<table align="right"><tr><td><font size="2"color="#FFFFFF">Cadastro realizado com sucesso!</font></td></tr></table>';
+		session_destroy();
 	}
+	
 	$form = '<table align="right" cellpadding="0" cellspacing="2">
 				<form action="http://localhost/teste/locadora/login.php" method="post">
 					<tr><td><font color="#ffffff">E-mail </font></td><td><input type="text" name="email" /></td></tr>
 					<tr><td><font color="#ffffff">Senha </font></td><td><input type="password" name="senha" /></td></tr>
-					<tr><td><input type="submit" value="Entar" /></td><td>'.@$msg_erro.'</td></tr>
+					<tr><td><input type="submit" value="Entar" /></td><td>'.@$msg.'</td></tr>
 					<tr><td colspan="2" align="center"><a href="http://localhost/teste/locadora/clientes/cadastro.php"><font color="#ffffff">Cadastre-se</font></td></tr>
 				</form>
 			</table>';
-	if (!empty($_GET['nivel'])) {
-		if ($_GET['nivel'] == "3") {
-			$form = '<table align="right"><tr><td><font color="#ffffff">Administrador '.$_GET['nome'].' (<a href="#"><font color="#ffffff">Sair</font></a>)</font></td></tr></table>';
-			
-		} elseif ($_GET['nivel'] == "2") {
-			$form = '<table align="right"><tr><td><font color="#ffffff">Funcionário '.$_GET["nome"].' (<a href="#"><font color="#ffffff">Sair</font></a>)</font></td></tr></table>';
-		} elseif ($_GET['nivel'] == "1") {
-			$form = '<table align="right"><tr><td><font color="#ffffff">Cliente '.$_GET["nome"].' (<a href="#"><font color="#ffffff">Sair</font></a>)</font></td></tr></table>';
+	if (!empty($_SESSION['nivel'])) {
+		if ($_SESSION['nivel'] == "3") {
+			$form = '<table align="right"><tr><td><font color="#ffffff">Administrador '.$_SESSION['nome'].' (<a href="http://localhost/teste/locadora/logout.php?sair=encerrar"><font color="#ffffff">Sair</font></a>)</font></td></tr></table>';
+			//unset($msg_aceso);
+		} elseif ($_SESSION['nivel'] == "2") {
+			$form = '<table align="right"><tr><td><font color="#ffffff">Funcionário '.$_SESSION['nome'].' (<a href="http://localhost/teste/locadora/logout.php?sair=encerrar"><font color="#ffffff">Sair</font></a>)</font></td></tr></table>';
+		} elseif ($_SESSION['nivel'] == "1") {
+			$form = '<table align="right"><tr><td><font color="#ffffff">Cliente '.$_SESSION['nome'].' (<a href="http://localhost/teste/locadora/logout.php?sair=encerrar"><font color="#ffffff">Sair</font></a>)</font></td></tr></table>';
 		}
-	} 
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,9 +54,27 @@
 				<h3 align="center"><a class="logo"	href="http://localhost/teste/locadora/index.php" style="text-decoration: none"><span><font size="7" color="#ffffff">LOCADORA</font></span></a></h3>
 				</td><td><?=$form; ?></td></tr>
 				<tr bgcolor="#ffffff" height="50"><td><ul class="nav">
-					<li class="active"><a href="http://localhost/teste/locadora/filmes/listar_filmes.php">Filmes</a></li><!-- no lugar de listar_produtos.php no original é index.php -->
-					<li><a href="http://localhost/teste/locadora/clientes/painel.php">Clientes</a></li>
-					<li><a href="http://localhost/teste/locadora/funcionarios/listar_funcionarios.php">Funcionários</a></li>
+					<?php 
+						if (isset($_SESSION['nivel']) && $_SESSION['nivel'] >= 1) {
+							if ($_SESSION['nivel'] == 3) {
+								echo '<li><a href="#">Filmes</a></li>
+									  <li class="active"><a href="http://localhost/teste/locadora/filmes/listar_filmes.php">Gerênciar Filmes</a></li><!-- no lugar de listar_produtos.php no original é index.php -->
+									  <li><a href="http://localhost/teste/locadora/clientes/painel.php">Perfil do Usuário</a></li>
+									  <li><a href="#">Perfil do Funcionário</a></li>
+									  <li><a href="http://localhost/teste/locadora/funcionarios/listar_funcionarios.php">Gerênciar Funcionários</a></li>';
+							} elseif ($_SESSION['nivel'] == 2) {
+								echo '<li><a href="#">Filmes</a></li>
+									  <li class="active"><a href="http://localhost/teste/locadora/filmes/listar_filmes.php">Gerênciar Filmes</a></li><!-- no lugar de listar_produtos.php no original é index.php -->
+									  <li><a href="#">Perfil do Funcionário</a></li>';
+							} elseif ($_SESSION['nivel'] == 1) {
+								echo '<li><a href="#">Filmes</a></li>
+									  <li><a href="http://localhost/teste/locadora/clientes/painel.php">Perfil do Usuário</a></li>';
+							} else {
+								
+								echo "ERRO!";
+							}
+						} 
+					?>
 				</ul></td>
 				<td rowspan="2">
 				

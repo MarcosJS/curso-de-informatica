@@ -1,4 +1,10 @@
 <?php
+	session_start();
+	//include '../template_topo.php';	
+	if (!isset($_SESSION['nivel']) || $_SESSION['nivel'] != 3) {
+		echo "<br/><br/><br/><br/><p align='center'><b>Acesso negado!</b></p><p align='center'><a href='http://localhost/teste/locadora/index.php'><b>HOME PAGE</b></a></p>";
+		//header('location: http://localhost/teste/locadora/index.php');
+	} else {
 	require '../conexao.php';
 	mysqli_query($conexao, "SET NAMES 'UTF8';");//configurando codificação
 	$listagem = mysqli_query($conexao, "SELECT * FROM usuario");
@@ -46,6 +52,7 @@
 			<td>E-mail: </td><td><input type="text" name="email" value="<?= @$linha['email'] ?>"/></td>
 				</tr><tr height="25">
 			<td>Senha: </td><td><input type="password" name="senha" value="<?= @$linha['senha'] ?>"/></td>
+			<input type="hidden" name="nivel" value="2" />
 				</tr>
 			</table>
 			<p align="center"><input type="submit" value="Enviar"/></p>
@@ -86,4 +93,5 @@
 
 <?php
 	include '../template_rodape.php';
+}
 ?>

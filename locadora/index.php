@@ -1,9 +1,12 @@
 <?php
+	session_start();
 	//chamando conexão e fazendo uma consulta no banco de dados para exibir uma lista de titulos na tela
+	setcookie("meucoockie", "este [e um coockie", time()+60*60*24*365, "/" );
 	require 'conexao.php';
 	mysqli_query($conexao, "SET NAMES 'UTF8';");
 	$listagem = mysqli_query($conexao, "SELECT * FROM filme");
     include 'template_topo.php';	
+	setcookie("teste_de_codificacao_coockie", "este é um teste de codificação do coockie", time()+60*60*24*365, "/" );
 ?>
 <!-- introduzi qualquer texto aqui apenas por questões estéticas -->
 <h3><font face="verdana" color="#A0A0A0">OS DEZ MAIS</font></h3>
