@@ -11,7 +11,5 @@
 	mysqli_query($conexao, $sql) or die('Error: '.mysqli_error($conexao));
 	header('location: listar_filmes.php');
 	exit;
-	}// else {
-		//echo "Error";
-	//}
+	}
 ?>

@@ -1,4 +1,5 @@
 <?php
+	// Chamando conexão com o banco de dados
 	require '../conexao.php';
 	mysqli_query($conexao, "SET NAMES 'UTF8';");//configurando codificação
 	$listagem = mysqli_query($conexao, "SELECT * FROM cliente");
