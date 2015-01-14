@@ -23,7 +23,13 @@
 	fwrite($arquivo, $texto);
 	
 	// Consultando o banco de dados
-	$sql = "SELECT * FROM filme";
+	if (isset($_GET['codigo']) && $_GET['codigo'] <> "") {
+		$codigo = $_GET['codigo'];
+		$sql = "SELECT * FROM filme WHERE cod_filme='$codigo';";	
+	} else {
+		$sql = "SELECT * FROM filme;";
+	}
+	//$sql = "SELECT * FROM filme";
 	$resultado = mysqli_query($conexao, $sql);
 	// Escrevendo as linhas com os dados da tabela
 	while($res = mysqli_fetch_array($resultado)) {
@@ -42,8 +48,9 @@
 		fwrite($arquivo, $texto);
 	}
 	fclose($arquivo);
-	echo '<center>';
-    echo "Arquivo gerado com sucesso<br>";
-    echo "<a target=newwindow href='relatorios/rel_filme.txt'> Clique aqui para baixar</a>";
-    echo '</center>';
+	header ('Location: relatorios/rel_filme.txt');
+	//echo '<center>';
+    //echo "Arquivo gerado com sucesso<br>";
+    //echo "<a target=newwindow href='relatorios/rel_filme.txt'> Clique aqui para baixar</a>";
+    //echo '</center>';
 ?>

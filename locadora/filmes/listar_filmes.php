@@ -48,7 +48,7 @@
 		<table border="0" cellspacing="0" cellpadding="7" align="center" width="1000">
 			<tr>
 				<th></th>
-				<th></th>
+				<th>Relatório</th>
 				<th align="left">Filme</th>
 				<th></th>
 			</tr>
@@ -57,7 +57,11 @@
 		?>
 			<tr height="25">
 				<td align="center"><a href="listar_filmes.php?codigo=<?= $linha['cod_filme']; ?>"><font color="green">ALTERAR</font></a></td>
-				<td align="center"><a href="imprimir_filme.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank"><font color="#A0A0A0">IMPRIMIR</font></a></td>
+				<td align="center">
+					<a href="imprimir_filme.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank"><font color="#A0A0A0">PDF</font></a>
+					<font color="#A0A0A0">/</font>
+					<a href="relatoriotxt.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank"><font color="#A0A0A0">TXT</font></a>
+				</td>
 				<td><?php echo $linha['titulo'];?></td>
 				<td align="center"><a href="excluir_filme.php?codigo=<?= $linha['cod_filme']; ?>"><font color="red">EXCLUIR</font></a></td>
 			</tr>
@@ -67,7 +71,12 @@
 		?>
 		</table>
 		<hr width="100%"/>
-		<p align="center"><a href="imprimir_filme.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank" style="text-decoration:none"><font color="#A0A0A0">IMPRIMIR LISTAGEM DE FILMES</font></a></p>
+		<p align="center"><b>Imprimir listagens de filme em</b></p>
+		<p align="center">
+		<a href="imprimir_filme.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank" style="text-decoration:none"><font color="#A0A0A0">PDF</font></a>
+		<font color="#000000"><b>ou</b></font>
+		<a href="relatoriotxt.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank" style="text-decoration:none"><font color="#A0A0A0">TXT</font></a>
+		</p>
 		<br /><br /><br />
 		
 
