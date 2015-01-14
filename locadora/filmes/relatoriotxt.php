@@ -10,15 +10,15 @@
 	
     // Cabeçalho
     $arquivo = fopen('relatorios/rel_filme.txt', 'w');
-	$texto = str_repeat('-', 122);
+	$texto = str_repeat('-', 118);
 	$texto.= "\r\n";
-	$texto.= str_pad('Cod_Filme', 10, " ", STR_PAD_BOTH).' | ';
+	$texto.= str_pad(converte('Código'), 6, " ", STR_PAD_BOTH).' | ';
 	$texto.= str_pad(converte('Título')	, 34, " ", STR_PAD_RIGHT).' | ';
 	$texto.= str_pad('Sinopse', 46, " ", STR_PAD_RIGHT).' | ';
 	$texto.= str_pad('Quantidade', 10, " ", STR_PAD_RIGHT).' | ';
 	$texto.= str_pad('Categoria', 10, " ", STR_PAD_BOTH);
 	$texto.= "\r\n";
-	$texto.= str_repeat('-', 122);
+	$texto.= str_repeat('-', 118);
 	$texto.= "\r\n";
 	fwrite($arquivo, $texto);
 	
@@ -31,7 +31,7 @@
 		$res['sinopse'] = substr(converte($res['sinopse']),0,43);
 		
 		// Dados do relatorio
-		$texto = str_pad($res['cod_filme'], 10, ' ', STR_PAD_BOTH).' | ';
+		$texto = str_pad($res['cod_filme'], 6, ' ', STR_PAD_BOTH).' | ';
 		$texto.= str_pad($res['titulo'], 34, ' ', STR_PAD_RIGHT).' | ';
 		$texto.= str_pad($res['sinopse']."...", 46, ' ', STR_PAD_RIGHT).' | ';
 		$texto.= str_pad($res['quantidade'], 10, ' ', STR_PAD_LEFT).' | ';
