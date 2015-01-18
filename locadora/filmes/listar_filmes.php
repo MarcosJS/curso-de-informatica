@@ -60,7 +60,7 @@
 				<td align="center">
 					<a href="imprimir_filme.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank"><font color="#A0A0A0">PDF</font></a>
 					<font color="#A0A0A0">/</font>
-					<a href="relatoriotxt.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank"><font color="#A0A0A0">TXT</font></a>
+					<a href="rel_txt.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank"><font color="#A0A0A0">TXT</font></a>
 				</td>
 				<td><?php echo $linha['titulo'];?></td>
 				<td align="center"><a href="excluir_filme.php?codigo=<?= $linha['cod_filme']; ?>"><font color="red">EXCLUIR</font></a></td>
@@ -75,7 +75,7 @@
 		<p align="center">
 		<a href="imprimir_filme.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank" style="text-decoration:none"><font color="#A0A0A0">PDF</font></a>
 		<font color="#000000"><b>ou</b></font>
-		<a href="relatoriotxt.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank" style="text-decoration:none"><font color="#A0A0A0">TXT</font></a>
+		<a href="rel_txt.php?codigo=<?= $linha['cod_filme']; ?>" target="_blank" style="text-decoration:none"><font color="#A0A0A0">TXT</font></a>
 		</p>
 		<br /><br /><br />
 		

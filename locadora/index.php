@@ -12,9 +12,10 @@
 ?>
 
 <!-- Introduzi qualquer texto nesta pagina apenas por questões estéticas -->
-<h3 align="center"><font face="verdana" color="#A0A0A0">OS DEZ MAIS</font></h3>
-<hr width="100%"/>
-<table border rules="cols" border="1" bordercolor="#ffffff" cellspacing="0" cellpadding="7" align="center" width="1000">
+<h1 align="center"><span>OS DEZ MAIS</span></h1>
+<br/>
+<!--rules="cols"-->
+<table  border="0" cellspacing="10">
 	<tr>
 		<th>Código</th>
 		<th>Filme</th>
@@ -27,8 +28,8 @@
 	while ($linha = mysqli_fetch_array($listagem)) {
 ?>
 
-	<tr height="75" bgcolor="#EBEBEB">
-		<td><?= $linha['cod_filme']; ?></td>
+	<tr>
+		<td align="center"><?= $linha['cod_filme']; ?></td>
 		<td align="center" ><b><?php echo $linha['titulo'];?></b></td>
 		<td align="justify" ><?= $linha['sinopse']; ?></td>
 		<td align="center" ><a href="#"><?= $linha['trailer']; ?></a></td>
@@ -40,8 +41,6 @@
 ?>
 
 </table>
-<hr width="100%"/>
-<br /><br /><br />
 
 <?php
 	// Inclusão do rodapé

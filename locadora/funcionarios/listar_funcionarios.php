@@ -20,7 +20,7 @@
 		
     include '../template_topo.php';	
 ?>
-		<h3><font face="verdana" color="#A0A0A0">FUNCIONÁRIOS</font></h3>
+		<h3 align="center">FUNCIONÁRIOS</h3>
 		<form action="<?= $destino; ?>" method="post">
 			<?= @$oculto; ?>
 			<fieldset>
@@ -57,8 +57,8 @@
 			</fieldset>
 		</form>
 		<br /><br />
-		<h3><font face="verdana" color="#A0A0A0">FUNCIONÁRIOS CADASTRADOS</font></h3>
-		<hr width="100%"/>
+		<h3 align="center">FUNCIONÁRIOS CADASTRADOS</h3>
+		<hr width="1000"/>
 		
 		<table border="0" cellspacing="0" cellpadding="7" align="center" width="1000">
 			<tr>
@@ -79,15 +79,11 @@
 				<td align="center"><?= $linha['funcao'];?></td>
 				<td align="center"><a href="excluir_funcionario.php?matricula=<?= $linha['matricula']; ?>"><font color="red">EXCLUIR</font></a></td>
 			</tr>
-			<tr><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr>
+			<tr><td></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr>
 		<?php
 			}
 		?>
 		</table>
-		<hr width="100%"/>
-		<br /><br /><br />
-		
-
 
 <?php
 	include '../template_rodape.php';
